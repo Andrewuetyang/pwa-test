@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="manifest" href="/manifest.json">
+  <title>Document</title>
+  <script>
+    if (navigator.serviceWorker) {
+      navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+          console.log('service worker 注册成功');
+      }).catch(function (err) {
+          console.log('servcie worker 注册失败')
+      });
+    }
+  </script>
+</head>
+<body>
+  <div>
+    我就是pwa应用，你想咋地！
+  </div>
+</body>
+</html>
