@@ -2,9 +2,9 @@
   "short_name": "Manifest Sample",
   "name": "Web Application Manifest Sample",
   "icons": [{
-      "src": "public/images/test.jpg",
-      "sizes": "96x96",
-      "type": "image/jpg"
+      "src": "public/images/rotate_bg.png",
+      "sizes": "156x192",
+      "type": "image/png"
    }],
   "start_url": "/",
   "display": "standalone",
