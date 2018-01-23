@@ -1,4 +1,32 @@
-self.addEventListener('install', function () {
+var cacheFiles = [
+  'index.html'
+];
+self.addEventListener('install', function (evt) {
   console.log('service worker安装成功');
-  console.log('mdzz');
+  evt.waitUntil(
+      caches.open('my-test-cahce-v1').then(function (cache) {
+          return cache.addAll(cacheFiles);
+      })
+  );
+});
+
+self.addEventListener('fetch', function (evt) {
+  evt.respondWith(
+    caches.match(evt.request).then(function(response) {
+        if (response) {
+            return response;
+        }
+        var request = evt.request.clone();
+        return fetch(request).then(function (response) {
+            if (!response && response.status !== 200 && !response.headers.get('Content-type').match(/image/)) {
+                return response;
+            }
+            var responseClone = response.clone();
+            caches.open('my-test-cache-v1').then(function (cache) {
+                cache.put(evt.request, responseClone);
+            });
+            return response;
+        });
+    })
+  )
 })
